@@ -11,9 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added SharpSploit.Evasion.ETW class, ETWEventWrite patch (credit @salu90)
 - Added SharpSploit.Execution.Injection.VirtualAllocAllocationTechnique (credit @aus)
 - Added SharpSploit.Enumeration.Clipboard clipboard monitor (credit @shellfarmer)
+- Added LegitSigned option to SharpSploit.Execution.ManualMap.OverloadModule
 
 ### Changed
 - Update Mimikatz binaries in embedded resources
+- Update Mimikatz to temporarily allow unsigned overload modules
 
 ### Fixed
 - Fixed SharpSploit.Enumeration.Keylogger HookProc from being garbage collected, fixed handling virtual packets

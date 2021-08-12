@@ -1963,23 +1963,25 @@
             String, the full path for the candidate module if one is found, or an empty string if one is not found.
             </returns>
         </member>
-        <member name="M:SharpSploit.Execution.ManualMap.Overload.OverloadModule(System.String,System.String)">
+        <member name="M:SharpSploit.Execution.ManualMap.Overload.OverloadModule(System.String,System.Boolean,System.String)">
             <summary>
             Load a signed decoy module into memory, creating legitimate file-backed memory sections within the process. Afterwards overload that
             module by manually mapping a payload in it's place causing the payload to execute from what appears to be file-backed memory.
             </summary>
             <author>The Wover (@TheRealWover), Ruben Boonen (@FuzzySec)</author>
             <param name="PayloadPath">Full path to the payload module on disk.</param>
+            <param name="LegitSigned">Optional, if the decoy module must have a legitimate signature.</param>
             <param name="DecoyModulePath">Optional, full path the decoy module to overload in memory.</param>
             <returns>PE.PE_MANUAL_MAP</returns>
         </member>
-        <member name="M:SharpSploit.Execution.ManualMap.Overload.OverloadModule(System.Byte[],System.String)">
+        <member name="M:SharpSploit.Execution.ManualMap.Overload.OverloadModule(System.Byte[],System.Boolean,System.String)">
             <summary>
             Load a signed decoy module into memory creating legitimate file-backed memory sections within the process. Afterwards overload that
             module by manually mapping a payload in it's place causing the payload to execute from what appears to be file-backed memory.
             </summary>
             <author>The Wover (@TheRealWover), Ruben Boonen (@FuzzySec)</author>
             <param name="Payload">Full byte array for the payload module.</param>
+            <param name="LegitSigned">Optional, if the decoy module must have a legitimate signature.</param>
             <param name="DecoyModulePath">Optional, full path the decoy module to overload in memory.</param>
             <returns>PE.PE_MANUAL_MAP</returns>
         </member>
